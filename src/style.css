@@ -1,0 +1,29 @@
+html,
+body,
+#root
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden ;
+    background-color: aqua;
+}
+
+.chuj
+{
+    color: pink;
+    background-color: black;
+    border-radius: 50%;
+    padding: 15px;
+
+}
+
+.chuj:hover
+{
+   
+    color: red;
+    background-color: yellow;
+   
+}
