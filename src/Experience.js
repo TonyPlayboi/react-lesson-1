@@ -13,6 +13,7 @@ export default function Experience ()
     const { camera, gl} = useThree()
     const boxRef = useRef()
     const boxRef2 = useRef()
+   
 
    
 
@@ -21,6 +22,7 @@ export default function Experience ()
 
         boxRef.current.rotation.y += 0.01
         boxRef2.current.rotation.y += 0.01
+      
     })
      
 
@@ -88,10 +90,14 @@ export default function Experience ()
 
     
 
+   
 
     <mesh castShadow ref={boxRef} position={[4,-1,-1.5]}>
   <boxGeometry></boxGeometry>
   <meshStandardMaterial color={'darkorange'}></meshStandardMaterial>
+  <Html>
+      <a href ="mailto: apflexin223@gmail.com " className="email">Mail me</a>
+    </Html>
 </mesh>
 
     <Text castShadow  
@@ -112,6 +118,9 @@ export default function Experience ()
       size={1024} // Size is optional, default = 1024
     />
   </meshStandardMaterial>
+  <Html >
+ <div className="fota"></div>
+  </Html>
 </mesh>
     <Text castShadow 
     color={'orange'}
