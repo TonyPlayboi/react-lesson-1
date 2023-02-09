@@ -84,7 +84,7 @@ export default function Experience ()
     </mesh>
     <Float
     speed={10}>
-    <Text  position={[0, 4, 0]} >Sram Ci na Ryj</Text>
+    <Text  position={[0, 4, 0]} >Sosna Pawel</Text>
 
     </Float>
     <CameraShake
