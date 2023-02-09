@@ -11,19 +11,3 @@ body,
     background-color: aqua;
 }
 
-.chuj
-{
-    color: pink;
-    background-color: black;
-    border-radius: 50%;
-    padding: 15px;
-
-}
-
-.chuj:hover
-{
-   
-    color: red;
-    background-color: yellow;
-   
-}

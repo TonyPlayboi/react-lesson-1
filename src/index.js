@@ -17,7 +17,11 @@ root.render(
       shadows
 
       camera={{
-         fov: 60
+         
+         fov: 60,
+          position: [-1, 4 ,50],
+          
+       
       }}
    >
      <color args={ [ 'pink']} attach="background"></color> 
