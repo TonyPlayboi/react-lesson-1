@@ -4,29 +4,26 @@ import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.js'
 import * as THREE from 'three'
 import { StrictMode } from 'react'
+import { Perf } from 'r3f-perf'
+
 
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
+
 root.render(
-   <StrictMode>
-   <Canvas
-   // flat
-      
-      gl={{
-         antialias: true,
-         toneMapping: THREE.ACESFilmicToneMapping,
-         
-      }}
    
+   <Canvas
+      shadows
+
       camera={{
          fov: 60
       }}
    >
-      
+     <color args={ [ 'pink']} attach="background"></color> 
    <Experience>
    
    </Experience>
    </Canvas>
-   </StrictMode>
+  
 )

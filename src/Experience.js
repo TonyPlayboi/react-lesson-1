@@ -1,78 +1,63 @@
 import {  useThree, extend, useFrame } from "@react-three/fiber"
-import {  MeshReflectorMaterial ,Float, Text,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake } from "@react-three/drei"
+import { BakeShadows, useHelper, MeshReflectorMaterial ,Float, Text,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake } from "@react-three/drei"
 import { useRef } from "react"
 import * as THREE from 'three'
-import { useControls } from "leva"
+import { Perf } from "r3f-perf"
 
 
 
 export default function Experience ()
 
 {
-    const { position, color } = useControls({
-      position: 
-      {
-          value: -2,
-          min: -4,
-          max: 5,
-          step: 0.01
-      },
-      color: '#ff0000'
-    })
     const { camera, gl} = useThree()
     const groupRef = useRef()
     const planeRef = useRef()
     const boxRef = useRef()
     const sphereRef = useRef()
+    const directionalLightRef = useRef()
+    useHelper(directionalLightRef, THREE.DirectionalLightHelper, 2)
      
 
   
     return <>
 
+    {/* <BakeShadows></BakeShadows> */}
+
+    <Perf position="top-left"
+    ></Perf>
+    
     <OrbitControls makeDefault></OrbitControls>
 
-    <directionalLight position={[1, 2, 3]} ></directionalLight>
+    <directionalLight ref={directionalLightRef} castShadow position={[1, 2, 3]} ></directionalLight>
 
     <ambientLight intensity={0.5}></ambientLight>
-
-
-    <group
-      ref ={groupRef}>
-    <mesh  ref = {boxRef} rotation-y={10} scale={2} position-x={position}>
-       <boxGeometry></boxGeometry>
-       <meshStandardMaterial color={color} ></meshStandardMaterial>
-    </mesh>
     
-    <TransformControls object={boxRef} mode="scale" ></TransformControls>
-    <TransformControls object={boxRef} mode="rotate" ></TransformControls>
-    <TransformControls object={boxRef} mode="translate" ></TransformControls>
+    <TransformControls object={directionalLightRef} mode="translate" ></TransformControls>
+    
 
-
-    <Float
-    speed={10}>
-<PivotControls hoveredColor={'#ff3333'} axisColors={ [ '#9381ff', '#ff4d6d', '#7ae582']} lineWidth={4} depthTest={ false }anchor={[0,0,0]} scale={1.2} >
-     <mesh ref= { sphereRef }  position-x={1.8}>
+                          {/* Floatująca kostaq */}
+  <Float  speed={10}>
+    <PivotControls hoveredColor={'#ff3333'} axisColors={ [ '#9381ff', '#ff4d6d', '#7ae582']} lineWidth={4} depthTest={ false }anchor={[0,0,0]} scale={1.2} >
+     <mesh ref= { sphereRef } castShadow  position-x={1.8}>
   
        <sphereGeometry></sphereGeometry>
 
        <meshStandardMaterial   color = "pink"> </meshStandardMaterial>
 
-       <Html wrapperClass="label" 
-       center
-       distanceFactor={ 8 }
-        >
+       <Html wrapperClass="label"  center distanceFactor={ 8 } >
         
-        <button
-        occlude = { [ boxRef]} className="chuj">Gowno</button></Html>
-        
-    </mesh>
- </PivotControls>
- </Float>
+        <button className="chuj">Gowno</button>
+        </Html>    
+     </mesh>
+    </PivotControls>
+  </Float>
+                         {/* Floatująca kostaq */}
 
 
 
-    </group>
-    <mesh   rotation-x={30}  scale={6}  position-y={-1.2}>
+    
+    <Float>
+    <mesh receiveShadow ref={planeRef} rotation-z={31.4}    rotation-x={31.3}  scale={18}  position-y={-1.3} position-z={-8}>
         <planeGeometry>   </planeGeometry>
         {/* <meshStandardMaterial color="green" side= {THREE.DoubleSide} ></meshStandardMaterial> */}
         <MeshReflectorMaterial 
@@ -82,14 +67,30 @@ export default function Experience ()
         
         ></MeshReflectorMaterial>
     </mesh>
+    </Float>
     <Float
     speed={10}>
     <Text  position={[0, 4, 0]} >Sosna Pawel</Text>
 
     </Float>
-    <CameraShake
-    intensity={0.4}
-    ></CameraShake>
+
+
+                              {/* Ground */}
+
+    <mesh receiveShadow scale={14} rotation-x={29.9} position-y={-2}>
+      <planeBufferGeometry></planeBufferGeometry>
+        <meshStandardMaterial color={'green'}></meshStandardMaterial>
+      
+    </mesh>
+
+                            {/* Ground */}
+
+
+                          
+    <CameraShake intensity={0.4}></CameraShake>
+
+
+                          
 
     
 
