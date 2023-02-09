@@ -95,9 +95,6 @@ export default function Experience ()
     <mesh castShadow ref={boxRef} position={[4,-1,-1.5]}>
   <boxGeometry></boxGeometry>
   <meshStandardMaterial color={'darkorange'}></meshStandardMaterial>
-  <Html>
-      <a href ="mailto: apflexin223@gmail.com " className="email">Mail me</a>
-    </Html>
 </mesh>
 
     <Text castShadow  
@@ -118,9 +115,6 @@ export default function Experience ()
       size={1024} // Size is optional, default = 1024
     />
   </meshStandardMaterial>
-  <Html >
- <div className="fota"></div>
-  </Html>
 </mesh>
     <Text castShadow 
     color={'orange'}
