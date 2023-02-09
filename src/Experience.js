@@ -38,7 +38,7 @@ export default function Experience ()
 
 
 
-  <mesh receiveShadow position={[0,3,1]} scale={[20,12,20]}>
+  <mesh receiveShadow position={[0,3,1]} scale={[20,12,25]}>
     <boxGeometry></boxGeometry>
     <meshStandardMaterial side={DoubleSide} color={'#303030'}></meshStandardMaterial>
   </mesh>
