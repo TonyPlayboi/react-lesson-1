@@ -1,5 +1,5 @@
 import {  useThree, extend, useFrame } from "@react-three/fiber"
-import {  GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float, Text,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows } from "@react-three/drei"
+import { Environment, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows } from "@react-three/drei"
 import { useRef } from "react"
 import * as THREE from 'three'
 import { Perf } from "r3f-perf"
@@ -29,6 +29,15 @@ export default function Experience ()
   
     return <>
 
+    <Environment
+      background
+      files={'./shutterstock_1183459336-_2_.hdr'}
+    >
+      
+
+    </Environment>
+  
+
   <SoftShadows
     frustum={1.75}
     size={0.0001}
@@ -38,12 +47,13 @@ export default function Experience ()
   ></SoftShadows>
 
 
+   
 
 
-  <mesh receiveShadow position={[0,3,1]} scale={[20,12,25]}>
+  {/* <mesh receiveShadow position={[0,3,1]} scale={[20,12,25]}>
     <boxGeometry></boxGeometry>
     <meshStandardMaterial side={DoubleSide} color={'#303030'}></meshStandardMaterial>
-  </mesh>
+  </mesh> */}
 
 
 
@@ -53,7 +63,8 @@ export default function Experience ()
     <Perf position="top-left"
     ></Perf>
     
-    <OrbitControls maxAzimuthAngle={Math.PI /2}   maxDistance={10} minDistance={5} maxPolarAngle={1} minPolarAngle={1} makeDefault></OrbitControls>
+    <OrbitControls  makeDefault></OrbitControls>
+    {/* Orbit Controlos parameters maxAzimuthAngle={Math.PI /2}   maxDistance={10} minDistance={5} maxPolarAngle={1} minPolarAngle={1} */}
 
     <pointLight
     distance={7.5}
@@ -71,6 +82,8 @@ export default function Experience ()
    
 
    <ambientLight intensity={0.3}></ambientLight>
+
+ 
     
     
     
@@ -95,9 +108,6 @@ export default function Experience ()
     <mesh castShadow ref={boxRef} position={[4,-1,-1.5]}>
   <boxGeometry></boxGeometry>
   <meshStandardMaterial color={'darkorange'}></meshStandardMaterial>
-  <Html>
-      <a href ="mailto: apflexin223@gmail.com " className="email">Mail me</a>
-    </Html>
 </mesh>
 
     <Text castShadow  
@@ -118,9 +128,6 @@ export default function Experience ()
       size={1024} // Size is optional, default = 1024
     />
   </meshStandardMaterial>
-  <Html >
- <div className="fota"></div>
-  </Html>
 </mesh>
     <Text castShadow 
     color={'orange'}

@@ -8,21 +8,7 @@ body,
     width: 100%;
     height: 100%;
     overflow: hidden ;
-    background-color: aqua;
+    background-color: brown;
 }
 
 
-.fota
-{
-    width: 100px;
-    height: 100px;
-    background-image: url(IMG_9605.JPG);
-    background-size: cover;
-}
-
-.email
-{
-
-    color: wheat;
-    text-align: center;
-}
