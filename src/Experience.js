@@ -4,6 +4,8 @@ import { useRef } from "react"
 import * as THREE from 'three'
 import { Perf } from "r3f-perf"
 import { DoubleSide } from "three"
+import { useLoader  } from "@react-three/fiber"
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
 
  
@@ -15,8 +17,8 @@ export default function Experience ()
     const boxRef2 = useRef()
    
 
-   
-
+   const krowa = useLoader(GLTFLoader, './krowawa4.glb')
+  
 
     useFrame(() =>{
 
@@ -29,9 +31,20 @@ export default function Experience ()
   
     return <>
 
+    
+    
+    
+
     <Environment
-      background
       files={'./shutterstock_1183459336-_2_.hdr'}
+      ground = {{
+        height: 7,
+        radius: 28,
+        scale: 100,
+        
+      }}
+      
+      
     >
       
 
@@ -105,7 +118,7 @@ export default function Experience ()
 
    
 
-    <mesh castShadow ref={boxRef} position={[4,-1,-1.5]}>
+    <mesh castShadow ref={boxRef} position-y={1} position-x={2} >
   <boxGeometry></boxGeometry>
   <meshStandardMaterial color={'darkorange'}></meshStandardMaterial>
 </mesh>
@@ -119,7 +132,7 @@ export default function Experience ()
 
 
  
-<mesh castShadow ref={boxRef2} position={[-4,-1,-1.5]}>
+<mesh castShadow ref={boxRef2} position-y={1}>
   <boxGeometry></boxGeometry>
   <meshStandardMaterial>
   <GradientTexture
@@ -134,9 +147,14 @@ export default function Experience ()
     position={[-5, -2, -8]} >Let's get creative</Text>
 
 
-    
-   
+    <pointLight position={[5,7,3]} intensity={5}
+    >
 
+    </pointLight>
+   
+<primitive object={ krowa.scene} scale={0.5} position={[5,1,0]}>
+
+</primitive>
     
 
     </>
