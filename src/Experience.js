@@ -1,6 +1,6 @@
 import {  useThree, extend, useFrame } from "@react-three/fiber"
-import { Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows } from "@react-three/drei"
-import { useRef } from "react"
+import { useAnimations ,Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows } from "@react-three/drei"
+import { useRef, useEffect } from "react"
 import * as THREE from 'three'
 import { Perf } from "r3f-perf"
 import { DoubleSide } from "three"
@@ -21,20 +21,35 @@ export default function Experience ()
     const burgerRef = useRef()
    
 
-   const krowa = useGLTF('./krowawa4.glb')
+   const krowa = useGLTF('./Cube5.glb')
    const burger = useGLTF('./burger.glb')
-  
+   const animations = useAnimations(krowa.animations, krowa.scene)
+   console.log(krowa)
 
+   useEffect(() =>
+   {
+      const action = animations.actions.bujana
+      action.play()
+
+      window.setTimeout(() => 
+      {
+
+        animations.actions.shrink.play()
+        animations.actions.shrink.crossFadeFrom(animations.actions.bujana, 1)
+      }, 2000)
+   }, [])
+  
     useFrame(() =>{
 
-        kowRef.current.rotation.y += 0.01
-        kowRef1.current.rotation.z += 0.01
-        kowRef2.current.rotation.x += 0.01
-        burgerRef.current.rotation.y += 0.01
+        
+      burgerRef.current.rotation.y += 0.01
       
-    })
+     })
 
   return <>
+
+<primitive ref={kowRef} object={ krowa.scene} scale={1 } position={[4,1,1]}
+ ></primitive>
 
 
   <Perf
@@ -72,19 +87,12 @@ export default function Experience ()
   </pointLight>
    
    
-  <Clone ref={kowRef} object={ krowa.scene} scale={0.5} position={[6,1,0]}
+ 
 
-  ></Clone>
 
-  <Clone ref={kowRef1} object={ krowa.scene} scale={0.5} position={[0,1,0]}
 
-  ></Clone>
 
-  <Clone ref={kowRef2} object={ krowa.scene} scale={0.5} position={[-8,1,0]}
-
-  ></Clone>
-
-<Clone  ref={burgerRef} object={ burger.scene} scale={0.5} position={[-8,1,0]}
+<Clone  ref={burgerRef} object={ burger.scene} scale={0.5} position={[0,1,0]}
 
 ></Clone>
 
