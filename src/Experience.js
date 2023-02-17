@@ -1,5 +1,5 @@
 import {  useThree, extend, useFrame } from "@react-three/fiber"
-import { Loader, Text3D,  useAnimations ,Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows, Sparkles, Environment } from "@react-three/drei"
+import { useTexture ,Loader, Text3D,  useAnimations ,Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows, Sparkles, Environment } from "@react-three/drei"
 import { useRef, useEffect, useState } from "react"
 import * as THREE from 'three'
 import { Perf } from "r3f-perf"
@@ -12,120 +12,80 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 export default function Experience ()
 
 {
-    const { camera, gl} = useThree()
-    const kowRef = useRef()
+    
+   
     const cameraAnimation = useRef()
 
 
-   const krowa = useGLTF('./gowno14.glb')
+    const nodes = useGLTF('./room.glb')
+    const camera = useGLTF('./camera14.glb')
+    const bakedTexture = useTexture('./room.jpg')
+    const bakedTexture1 = useTexture('./camera.jpg')
+    bakedTexture.flipY = false
+    bakedTexture1.flipY = false
+
+   
+    
 
 
 
 
-   const animations = useAnimations(krowa.animations, krowa.scene)
-   console.log(krowa)
+   const animations = useAnimations(camera.animations, camera.scene)
+   console.log(animations)
 
-  //  useEffect(() =>
-  //  {
-  //     const action = animations.actions.sraka
-  //     action.play()
-
-      
-
-  //     window.setTimeout(() => 
-  //     {
-
-  //       animations.actions.sraka.play()
-  //       animations.actions.sraka.crossFadeFrom(animations.actions.sraka, 1)
-  //     }, 2000)
-  //  }, [])
-
-  //  useEffect(() =>
-  //  {
-  //     const action = animations.actions.sraka
-  //     action.play()
-
-      
-
-  //     window.setTimeout(() => 
-  //     {
-
-  //       animations.actions.sraka.play()
-  //       animations.actions.sraka.crossFadeFrom(animations.actions.sraka, 1)
-  //     }, 2000)
-  //  }, [])
+    useEffect(() =>
+    {
+      const action = animations.actions.kurwa
+      action.play()
+    }, [])
 
   
-    // useFrame(() =>{
-
-        
-      
-
-    //   burgerRef.current.rotation.y += 0.01
-
-    //  })
 
   return <>
 
+<primitive
+object={camera.scene}
+rotation={[0,4.3,0]}
+></primitive>
 
+ 
+
+  
+
+  <mesh
+  geometry={nodes.nodes.Plane001.geometry}
+  >
+    <meshBasicMaterial map={ bakedTexture }></meshBasicMaterial>
+  </mesh>
+
+ 
+
+   <Perf
+     position="top-left">
+  </Perf>
 
   <PerspectiveCamera
   ref={cameraAnimation}
   makeDefault
-  position={[0,0,12]}
+  position={[-12,6,8]}
   fov={13}
-
-  >
-
-  </PerspectiveCamera>
-
-
-<Environment
-
-preset="forest"
-></Environment>
-
-
-<primitive ref={kowRef} object={ krowa.scene} scale={1 } position={[0,0,0]}
-
- >
-
- </primitive>
-
- <Html
- 
- 
- occlude={[kowRef]}
-  rotation-y={1.65}
-  position-x={1}
-  scale={0.1}
-  transform
-  >
-  <iframe className="klip" width="560" height="315" src="https://www.youtube.com/embed/uDjg0XqYiFY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  </Html>
-
-
-  <Perf
-     position="top-left">
-  </Perf>
-
-
-
-
-    <Sparkles
-    position={[0,1,1.7]}
-    size={[5,10,10]}
-    scale={[0.25,0.4, 0.25]}
-    count={40}
-    color= {'lightgreen'}
-    ></Sparkles>
-
+>
+</PerspectiveCamera>
 
   <OrbitControls  
      makeDefault>
   </OrbitControls>
   
+ <pointLight
+  position={[-2,4,2]}
+  intensity={0.9}
+  color={'white'}
   
+  >
+
+
+ 
+ </pointLight>
 
   </>
 }
