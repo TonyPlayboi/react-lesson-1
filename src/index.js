@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.js'
 import * as THREE from 'three'
-import { StrictMode } from 'react'
+import { StrictMode,  } from 'react'
 import { Perf } from 'r3f-perf'
 
 
@@ -18,16 +18,19 @@ root.render(
 
       camera={{
          
-         fov: 30,
+         fov: 50,
          
           
        
       }}
    >
-     <color args={ [ 'red']} attach="background"></color> 
+     <color args={ [ '#695b5b']} attach="background"></color> 
    <Experience>
    
    </Experience>
    </Canvas>
+
+   
+   
   
 )
