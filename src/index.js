@@ -19,12 +19,12 @@ root.render(
       camera={{
          
          fov: 30,
-          position: [-1, 4 ,50],
+         
           
        
       }}
    >
-     <color args={ [ 'pink']} attach="background"></color> 
+     <color args={ [ 'red']} attach="background"></color> 
    <Experience>
    
    </Experience>

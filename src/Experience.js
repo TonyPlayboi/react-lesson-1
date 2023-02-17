@@ -1,6 +1,6 @@
 import {  useThree, extend, useFrame } from "@react-three/fiber"
-import { Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows } from "@react-three/drei"
-import { useRef } from "react"
+import { Cloud, Text3D,  useAnimations ,Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows, Sparkles } from "@react-three/drei"
+import { useRef, useEffect, useState } from "react"
 import * as THREE from 'three'
 import { Perf } from "r3f-perf"
 import { DoubleSide } from "three"
@@ -19,74 +19,112 @@ export default function Experience ()
     const kowRef1 = useRef()
     const kowRef2 = useRef()
     const burgerRef = useRef()
-   
+    const cameraAnimation = useRef()
 
-   const krowa = useGLTF('./krowawa4.glb')
+   const krowa = useGLTF('./gowno14.glb')
    const burger = useGLTF('./burger.glb')
-  
+   const animations = useAnimations(krowa.animations, krowa.scene)
+   console.log(krowa)
 
+  //  useEffect(() =>
+  //  {
+  //     const action = animations.actions.sraka
+  //     action.play()
+
+      
+
+  //     window.setTimeout(() => 
+  //     {
+
+  //       animations.actions.sraka.play()
+  //       animations.actions.sraka.crossFadeFrom(animations.actions.sraka, 1)
+  //     }, 2000)
+  //  }, [])
+  
     useFrame(() =>{
 
-        kowRef.current.rotation.y += 0.01
-        kowRef1.current.rotation.z += 0.01
-        kowRef2.current.rotation.x += 0.01
-        burgerRef.current.rotation.y += 0.01
+        
       
-    })
+      
+     })
 
   return <>
+
+  <PerspectiveCamera
+  ref={cameraAnimation}
+  makeDefault
+  position={[0,2,7]}
+  >
+
+  </PerspectiveCamera>
+
+<primitive ref={kowRef} object={ krowa.scene} scale={1.5 } position={[0,1,1]}
+ ></primitive>
 
 
   <Perf
      position="top-left">
   </Perf>
 
+  
+
+
+
+
+    <Sparkles
+    position={[0,1,1.7]}
+    size={[5,10,10]}
+    scale={[0.25,0.4, 0.25]}
+    count={40}
+    color= {'lightgreen'}
+   
+    >
+
+    </Sparkles>
+
     
+
   <OrbitControls  
      makeDefault>
   </OrbitControls>
   
-
-  <pointLight
-    distance={7.5}
-    intensity={2} 
-    position={[-4,2,-2]}>
-  </pointLight>
-
-  <pointLight
-    distance={7.5}
-    intensity={2} 
-    position={[4.5,2,-2]}>
-  </pointLight>
-    
-   
-
+  
   <ambientLight 
     intensity={0.3}>
   </ambientLight>
 
- 
   <pointLight 
-    position={[5,7,3]} 
-    intensity={5}>
-  </pointLight>
+  color={'orange'}
+  intensity={1}
+  position={[0,0.3,2.8]}
+  ></pointLight>
+   <pointLight 
+  color={'white'}
+  intensity={1}
+  position={[1,1,-2]}
+  ></pointLight>
+
    
-   
-  <Clone ref={kowRef} object={ krowa.scene} scale={0.5} position={[6,1,0]}
+ 
+ <Text3D 
+      font="./fonts/helvetiker_regular.typeface.json"
+      position={[2,0,0]}
+      rotation={[0,0,0]}
+      size={ 0.75 }
+      height={ 0.2 }
+      curveSegments={ 12 }
+      bevelEnabled
+      bevelThickness={ 0.02 }
+      bevelSize={ 0.02 }
+      bevelOffset={ 0 }
+      bevelSegments={ 5 } >
+  Gejuch
+  <meshStandardMaterial color={'orange'}></meshStandardMaterial>
+ </Text3D>
 
-  ></Clone>
 
-  <Clone ref={kowRef1} object={ krowa.scene} scale={0.5} position={[0,1,0]}
 
-  ></Clone>
 
-  <Clone ref={kowRef2} object={ krowa.scene} scale={0.5} position={[-8,1,0]}
-
-  ></Clone>
-
-<Clone  ref={burgerRef} object={ burger.scene} scale={0.5} position={[-8,1,0]}
-
-></Clone>
 
   </>
 }
