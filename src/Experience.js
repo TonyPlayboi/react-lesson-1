@@ -21,6 +21,7 @@ export default function Experience ()
     const camera = useGLTF('./camera14.glb')
     const bakedTexture = useTexture('./room.jpg')
     const bakedTexture1 = useTexture('./camera.jpg')
+    const cameraRef = useRef()
     bakedTexture.flipY = false
     bakedTexture1.flipY = false
 
@@ -44,6 +45,7 @@ export default function Experience ()
   return <>
 
 <primitive
+
 object={camera.scene}
 rotation={[0,4.3,0]}
 ></primitive>
@@ -56,6 +58,14 @@ rotation={[0,4.3,0]}
   geometry={nodes.nodes.Plane001.geometry}
   >
     <meshBasicMaterial map={ bakedTexture }></meshBasicMaterial>
+    <Html
+    
+    position={[1.8,1,0]}
+    rotation-y={-1.6}
+    scale={0.2}
+    transform>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uDjg0XqYiFY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </Html>
   </mesh>
 
  
