@@ -1,5 +1,5 @@
 import {  useThree, extend, useFrame } from "@react-three/fiber"
-import { PresentationControls ,ContactShadows,useTexture ,Loader, Text3D,  useAnimations ,Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows, Sparkles, Environment, Center } from "@react-three/drei"
+import { PresentationControls ,ContactShadows,useTexture ,Loader, Text3D,  useAnimations ,Clone ,useGLTF, GradientTexture ,softShadows, BakeShadows, useHelper, MeshReflectorMaterial ,Float , Text ,  Html, PivotControls,  TransformControls, OrbitControls, CameraShake, PerspectiveCamera, SoftShadows, Sparkles, Environment, Center, Cloud } from "@react-three/drei"
 import { useRef, useEffect, useState } from "react"
 import * as THREE from 'three'
 import { Perf } from "r3f-perf"
@@ -18,7 +18,7 @@ export default function Experience ()
 
 
     const nodes = useGLTF('./roomAJ1.glb')
-    const camera = useGLTF('./camera14.glb')
+    const kaktus = useGLTF('./kaktus2.glb')
     const bakedTexture = useTexture('./roomAJ1.jpg')
     const bakedTexture1 = useTexture('./camera.jpg')
     const cameraRef = useRef()
@@ -33,18 +33,20 @@ export default function Experience ()
 
 
 
-   const animations = useAnimations(camera.animations, camera.scene)
+   const animations = useAnimations(kaktus.animations, kaktus.scene)
    console.log(animations)
 
     useEffect(() =>
     {
-      const action = animations.actions.kurwa
+      const action = animations.actions.atak
       action.play()
     }, [])
 
   
 
   return <>
+
+
 
 
 
@@ -55,9 +57,18 @@ export default function Experience ()
     azimuth={ [ - 1, 0.75 ] }
     config={ { mass: 2, tension: 400 } }
     snap={ { mass: 4, tension: 400 } }
+
 >
+
+
+<primitive 
+position={[-2,-0.9,0.4]}
+rotation={[0,1,0]}
+
+object={kaktus.scene} ></primitive>
    
 <mesh
+receiveShadow
 position={[-2,-0.9,0]}
 rotation={[0,1,0]}
 castShadow
@@ -113,7 +124,10 @@ geometry={nodes.nodes.roomAj.geometry}
         ></meshStandardMaterial>
     </Text3D>
 </Float>
+
+
 </PresentationControls>
+
 
 
 
