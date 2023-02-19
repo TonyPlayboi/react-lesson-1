@@ -11,7 +11,11 @@ import { Perf } from 'r3f-perf'
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 
+
+
 root.render(
+
+   
    
    <Canvas
       shadows
@@ -29,7 +33,7 @@ root.render(
    
    </Experience>
    </Canvas>
-
+ 
    
    
   
