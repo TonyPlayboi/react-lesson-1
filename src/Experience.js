@@ -158,7 +158,7 @@ geometry={nodes.nodes.roomAj.geometry}
   makeDefault
  
   position={[-0.6,0.5,20]}
-  fov={13}
+  fov={14}
 >
 </PerspectiveCamera>
 {/* 
