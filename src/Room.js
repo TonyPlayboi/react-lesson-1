@@ -21,8 +21,7 @@ export default function Room (props)
 
 
     const nodes = useGLTF('./Doctor1.glb')
-    const kaktus = useGLTF('./kaktus2.glb')
-    const bakedTexture = useTexture('./Kaktuisy.jpg')
+   
 
     console.log(nodes.animations)
    
@@ -30,25 +29,24 @@ export default function Room (props)
     const kaktusGroup= useRef()
     
 
-    const animations = useAnimations(kaktus.animations, kaktus.scene)
+    
     const bujanka = useAnimations(nodes.animations, nodes.scene)
   
 
-    bakedTexture.flipY = false
+   
     
 
 
 
     const [active, setActive] = useState(false)
 
-    const ref = useRef()
-    const tl = useRef()
+
 
   
 
     useEffect(() =>
     {
-      const action = animations.actions.atak
+      
       const jechana = bujanka.actions.Doctor
       const jechana1 = bujanka.actions.Action
       jechana1.play()
@@ -56,7 +54,7 @@ export default function Room (props)
     
       
       
-      action.play()
+      
     }, [])
 
   
