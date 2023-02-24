@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.js'
 import * as THREE from 'three'
+import { ScrollControls} from "@react-three/drei"
+
 import { StrictMode,  } from 'react'
 import { Perf } from 'r3f-perf'
 
@@ -28,10 +30,13 @@ root.render(
        
       }}
    >
-     <color args={ [ '#695b5b']} attach="background"></color> 
-   <Experience>
+     {/* <color args={ [ '#695b5b']} attach="background"></color>  */}
+
+
+   <Experience></Experience>
    
-   </Experience>
+
+
    </Canvas>
  
    
